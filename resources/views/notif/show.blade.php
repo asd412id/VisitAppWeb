@@ -96,7 +96,7 @@
               <textarea name="keterangan" rows="5" class="form-control" placeholder="Keterangan" required>{{ $data->keterangan }}</textarea>
             </div>
             <div class="form-group">
-              <button type="submit" class="btn btn-primary" style="width: 100%">Simpan</button>
+              <button type="submit" class="btn btn-primary" style="width: 100%">Konfirmasi</button>
             </div>
           </form>
         </div>
