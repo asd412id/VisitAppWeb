@@ -8,13 +8,12 @@ class Configs extends Model
 {
   protected $table = 'configs';
 
-  protected $fillable = ['ruang_id','config','value'];
+  protected $fillable = ['config','value'];
   public $timestamps = false;
 
   public static function getAll()
   {
-    $configs = self::select('ruang_id','value','config')
-    ->whereNull('ruang_id')
+    $configs = self::select('value','config')
     ->get()
     ->pluck('value','config')
     ->toArray();
