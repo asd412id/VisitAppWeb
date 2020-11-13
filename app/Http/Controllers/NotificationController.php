@@ -79,6 +79,8 @@ class NotificationController extends BaseController
 
     if (!$guest) {
       return redirect()->route('notif.index')->withErrors(['Data tidak ditemukan']);
+    }elseif (!is_null($guest->status)) {
+      return redirect()->back()->withErrors(['Permintaan telah dikonfirmasi oleh '.$guest->approved_by]);
     }
 
     $guest->status = $r->action;
