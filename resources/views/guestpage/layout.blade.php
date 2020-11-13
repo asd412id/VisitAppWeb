@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="csrf_token" content="{{ csrf_token() }}" />
-  <link rel="icon" type="image/png" href="{{ @$configs?asset('uploaded/'.$configs->logo):asset('assets/img/sinjai.png') }}"/>
+  <link rel="icon" type="image/png" href="{{ @$configs->logo?asset('uploaded/'.$configs->logo):asset('assets/img/sinjai.png') }}"/>
   <link rel="stylesheet" type="text/css" href="{{ asset('assets/guestpage') }}/vendor/bootstrap/css/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="{{ asset('assets/guestpage') }}/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" type="text/css" href="{{ asset('assets/guestpage') }}/fonts/iconic/css/material-design-iconic-font.min.css">
