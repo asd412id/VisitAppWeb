@@ -2,7 +2,7 @@
 @section('log-content')
   <div class="col-sm-12 text-center">
     <div class="alert alert-danger">
-      Klik tombol "Cari" untuk memulai cari data tamu!
+      Klik tombol "Cari" untuk memulai cari data pengunjung!
     </div>
   </div>
 @endsection

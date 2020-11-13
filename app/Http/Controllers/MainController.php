@@ -32,26 +32,26 @@ class MainController extends BaseController
     $now = Carbon::now();
     $guestAll = Guest::whereNotNull('cin')
     ->when(auth()->user()->role!='admin',function($q,$r){
-      $q->where('ruang_id',auth()->user()->ruang_id);
+      $q->whereIn('ruang_id',auth()->user()->ruang->pluck('id')->toArray());
     })
     ->count();
     $guestMonth = Guest::whereNotNull('cin')
     ->when(auth()->user()->role!='admin',function($q,$r){
-      $q->where('ruang_id',auth()->user()->ruang_id);
+      $q->whereIn('ruang_id',auth()->user()->ruang->pluck('id')->toArray());
     })
     ->where('cin','>=',$now->copy()->startOfMonth()->format('Y-m-d H:i:s'))
     ->where('cin','<=',$now->copy()->endOfMonth()->format('Y-m-d H:i:s'))
     ->count();
     $guestWeek = Guest::whereNotNull('cin')
     ->when(auth()->user()->role!='admin',function($q,$r){
-      $q->where('ruang_id',auth()->user()->ruang_id);
+      $q->whereIn('ruang_id',auth()->user()->ruang->pluck('id')->toArray());
     })
     ->where('cin','>=',$now->copy()->startOfWeek()->format('Y-m-d H:i:s'))
     ->where('cin','<=',$now->copy()->endOfWeek()->format('Y-m-d H:i:s'))
     ->count();
     $guestDay = Guest::whereNotNull('cin')
     ->when(auth()->user()->role!='admin',function($q,$r){
-      $q->where('ruang_id',auth()->user()->ruang_id);
+      $q->whereIn('ruang_id',auth()->user()->ruang->pluck('id')->toArray());
     })
     ->where('cin','>=',$now->copy()->startOfDay()->format('Y-m-d H:i:s'))
     ->where('cin','<=',$now->copy()->endOfDay()->format('Y-m-d H:i:s'))
@@ -59,7 +59,7 @@ class MainController extends BaseController
 
     $data = [
       'title' => 'Beranda',
-      'subtitle' => 'Status Data Tamu',
+      'subtitle' => 'Status Data Pengunjung',
       'guestAll' => $guestAll,
       'guestMonth' => $guestMonth,
       'guestWeek' => $guestWeek,
@@ -270,7 +270,7 @@ class MainController extends BaseController
     $uuid = str_replace('=',$key,$generate);
 
     $data = [
-      'title' => 'Kode QR Buku Tamu - '.@$configs->nama_ruang??'UPTD SMPN 39 SINJAI',
+      'title' => 'Kode QR Buku Pengunjung - '.@$configs->nama_ruang??'UPTD SMPN 39 SINJAI',
       'uuid'=>$uuid,
       'configs'=>$configs,
     ];

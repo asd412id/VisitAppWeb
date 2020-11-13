@@ -1,16 +1,19 @@
 <div class="dt-responsive">
   <table class="table table-bordered table-guest">
     <thead class="nowrap">
+    <tr>
       @if (count($data)>1 || request()->start_date!=request()->end_date)
         <th>Tanggal</th>
       @endif
-      <th width="50">Waktu</th>
-      <th width="235">Nama</th>
-      <th width="200">Pekerjaan</th>
+      <th width="155">Nama</th>
+      <th>Pekerjaan</th>
       <th>No. Telp</th>
-      <th width="200">Alamat</th>
-      <th width="200">Tujuan</th>
-      <th width="200">Rating/Kesan</th>
+      <th>Alamat</th>
+      <th>Ruang/Bidang</th>
+      <th>Tujuan</th>
+      <th>Status</th>
+      <th>Oleh</th>
+    </tr>
     </thead>
     <tbody>
       @foreach ($data as $key => $d)
@@ -19,7 +22,6 @@
             <td rowspan="{{ count($d['data']) }}">{{ $d['tanggal']->locale('id')->translatedFormat('l, d/m/Y') }}</td>
           @endif
           @foreach ($d['data'] as $key => $g)
-            <td class="text-center nowrap">{{ $g->cin->format('H:i').($g->cout?' - '.$g->cout->format('H:i'):null) }}</td>
             <td>
               <strong>{{ $g->nama }}</strong>
               @if ($g->anggota && count($g->anggota))
@@ -34,8 +36,16 @@
             <td>{{ $g->pekerjaan }}</td>
             <td class="nowrap">{{ $g->telp }}</td>
             <td>{{ $g->alamat }}</td>
+            <td>{{ $g->ruang->nama }}</td>
             <td>{{ $g->tujuan }}</td>
-            <td>Rating: <strong style="text-decoration: underline">{{ $g->rating_text??'Tidak ada' }}</strong><br>{{ $g->kesan }}</td>
+            <td>
+              @if (is_null($g->status))
+                Belum Dikonfirmasi
+              @else
+                {{ $g->status?'Diterima':'Ditolak' }}
+              @endif
+            </td>
+            <td>{{ $g->approved_by }}</td>
             @break
           @endforeach
           @php
@@ -48,20 +58,20 @@
               <td class="text-center nowrap">{{ $g->cin->format('H:i').($g->cout?' - '.$g->cout->format('H:i'):null) }}</td>
               <td>
                 <strong>{{ $g->nama }}</strong>
-                @if ($g->anggota && count($g->anggota))
-                  <br><span style="text-decoration: underline">bersama dengan:</span>
-                  <ol style="margin: 0;padding: 0 15px;">
-                    @foreach ($g->anggota as $k1 => $ag)
-                      <li>{{ $ag }}</li>
-                    @endforeach
-                  </ol>
-                @endif
               </td>
               <td>{{ $g->pekerjaan }}</td>
               <td class="nowrap">{{ $g->telp }}</td>
               <td>{{ $g->alamat }}</td>
+              <td>{{ $g->ruang->nama }}</td>
               <td>{{ $g->tujuan }}</td>
-              <td>Rating: <strong style="text-decoration: underline">{{ $g->rating_text??'Tidak ada' }}</strong><br>{{ $g->kesan }}</td>
+              <td>
+                @if (is_null($g->status))
+                  Belum Dikonfirmasi
+                @else
+                  {{ $g->status?'Diterima':'Ditolak' }}
+                @endif
+              </td>
+              <td>{{ $g->approved_by }}</td>
             </tr>
           @endforeach
         @endif

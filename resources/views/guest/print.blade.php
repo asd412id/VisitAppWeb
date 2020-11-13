@@ -3,9 +3,7 @@
   <head>
     <meta charset="utf-8">
     <title>{{ $title }}</title>
-    <link rel="stylesheet" href="{{ asset('assets/vendor') }}/fontawesome/css/all.min.css">
-    <link rel="stylesheet" href="{{ asset('assets/vendor') }}/bootstrap/dist/css/bootstrap.min.css">
-    <style media="screen">
+    <style>
       html,body{
         width: 100%;height: 100%;margin: 0;padding: 0;
         /* font-size: 9pt !important; */
@@ -31,6 +29,7 @@
         border: solid 1px #000 !important;
         border-bottom: solid 1px #000;
         border-collapse: collapse;
+        padding: 3px 5px;
       }
       .table td{
         text-align: center;
@@ -66,6 +65,9 @@
       ol{
         margin-left: 7px !important;
       }
+      @page{
+        margin: 15px;
+      }
     </style>
   </head>
   <body>
@@ -75,10 +77,10 @@
         @php
           $carbon = new \Carbon\Carbon;
           $tanggal = request()->start_date==request()->end_date?$carbon->createFromFormat('Y/m/d',request()->start_date)->locale('id')->translatedFormat('l, d F Y'):$carbon->createFromFormat('Y/m/d',request()->start_date)->locale('id')->translatedFormat('d F Y').' s.d. '.$carbon->createFromFormat('Y/m/d',request()->end_date)->locale('id')->translatedFormat('d F Y');
-          $qr = 'Daftar Tamu - '.time().' - by asd412id';
+          $qr = 'Daftar Pengunjung - '.time().' - by asd412id';
         @endphp
-        <h3 class="text-center">{{ request()->title??'Daftar Tamu' }}</h3>
-        <p class="text-center">{{ $tanggal }}</p>
+        <h3 class="text-center" style="margin: 0">{{ request()->title??'Daftar Pengunjung' }}</h3>
+        <p class="text-center" style="margin-top: 5px">{{ $tanggal }}</p>
         @include('guest.layouts.table')
       @endif
       @include('layouts.ttd')

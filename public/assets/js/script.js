@@ -94,9 +94,9 @@ String.prototype.format = function() {
   }
 
   $(".currency").autoNumeric('init');
-  $(document).on('contextmenu',function(){
-    return false;
-  })
+  // $(document).on('contextmenu',function(){
+  //   return false;
+  // })
 })(jQuery);
 
 if ($(".toggle").length>0) {

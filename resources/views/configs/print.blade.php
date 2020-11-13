@@ -80,11 +80,11 @@
     @endphp
     <div class="page">
       @include('layouts.kop')
-      <h1 class="text-center">Kode QR Buku Tamu</h1>
+      <h1 class="text-center">Kode QR Buku Pengunjung</h1>
       <div class="text-center">
         <img src="data:image/png;base64,{!! base64_encode(\QrCode::format('png')->errorCorrection('H')->merge($logo,.3,true)->size('435')->generate($_token)) !!}" alt="">
       </div>
-      <p class="mt-30 mb-10 text-center">* Scan Kode QR Menggunakan Aplikasi Buku Tamu</p>
+      <p class="mt-30 mb-10 text-center">* Scan Kode QR Menggunakan Aplikasi Buku Pengunjung</p>
     </div>
   </body>
 </html>

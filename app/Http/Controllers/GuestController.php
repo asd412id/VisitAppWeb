@@ -14,8 +14,8 @@ class GuestController extends Controller
   public function index()
   {
     $data = [
-      'title' => 'Data Tamu',
-      'subtitle' => 'Lihat Data Tamu',
+      'title' => 'Data Pengunjung',
+      'subtitle' => 'Lihat Data Pengunjung',
       'ruang' => null
     ];
     return view('guest.index',$data);
@@ -30,12 +30,12 @@ class GuestController extends Controller
     $dformat = "Y-m-d H:i:s";
     foreach ($dates as $key => $d) {
       $guest = Guest::orderBy('cin','asc')
-      ->when($r->ruang,function($q,$r){
-        $q->where('ruang_id',$r);
-      })
       ->where('cin','>=',$d->startOfDay()->format($dformat))
-      ->where('cin','<=',$d->endOfDay()->format($dformat))
-      ->get();
+      ->where('cin','<=',$d->endOfDay()->format($dformat));
+      if (!auth()->user()->is_admin) {
+        $guest = $guest->whereIn('ruang_id',auth()->user()->ruang->pluck('id')->toArray());
+      }
+      $guest = $guest->get();
       if (count($guest)) {
         foreach ($guest as $key1 => $g) {
           $logs[$key]['tanggal'] = $d;
@@ -44,38 +44,35 @@ class GuestController extends Controller
       }
     }
 
-    $ruang = \App\Ruang::find($r->ruang);
-
     $data = [
-      'title' => 'Data Tamu',
-      'subtitle' => 'Lihat Data Tamu',
+      'title' => 'Data Pengunjung',
+      'subtitle' => 'Lihat Data Pengunjung',
       'data' => $logs,
-      'ruang' => $ruang,
-      'configs' => !auth()->user()->is_admin?auth()->user()->configs_all:$ruang->configs_all
+      'configs' => \App\Models\Configs::getAll(),
     ];
 
     if ($r->download_pdf) {
       if (!count($logs)) {
-        return redirect()->route('guest.index')->withErrors(['Data tamu tidak tersedia!']);
+        return redirect()->route('guest.index')->withErrors(['Data pengunjung tidak tersedia!']);
       }
       if ($r->start_date!=$r->end_date) {
         $tgl = Carbon::parse($r->start_date)->locale('id')->translatedFormat('j F Y').' s.d. '.Carbon::parse($r->end_date)->locale('id')->translatedFormat('j F Y');
       }else {
         $tgl = Carbon::parse($r->start_date)->locale('id')->translatedFormat('j F Y');
       }
-      $data['title'] = ($r->title??'Data Tamu').' ('.$tgl.')';
+      $data['title'] = ($r->title??'Data Pengunjung').' ('.$tgl.')';
 
       $params = [
-        'page-width'=>'21.5cm',
-        'page-height'=>'33cm',
+        'format'=>[215,330]
       ];
-      $params['orientation'] = 'landscape';
+      if (!request()->user||count($users)>1) {
+        $params['orientation'] = 'L';
+      }
 
       $filename = $data['title'].'.pdf';
 
-      $pdf = PDF::loadView('guest.print',$data)
-      ->setOptions($params);
-      return $pdf->download($filename);
+      $pdf = PDF::loadView('guest.print',$data,[],$params);
+      return $pdf->stream($filename);
 
     }
 

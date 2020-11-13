@@ -36,18 +36,9 @@
         <form action="{{ route('guest.show') }}" method="post">
           @csrf
           <div class="row">
-            <div class="{{ auth()->user()->is_admin?'col-sm-3':'col-sm-6' }}">
-              <input type="text" class="form-control" value="{{ request()->title??'Rekap Buku Tamu' }}" name="title" id="title" title="Title Rekap Buku Tamu">
+            <div class="col-sm-6">
+              <input type="text" class="form-control" value="{{ request()->title??'Rekap Buku Pengunjung' }}" name="title" id="title" title="Title Rekap Buku Pengunjung">
             </div>
-            @if (auth()->user()->is_admin)
-              <div class="col-sm-3">
-                <select class="form-control select2-ajax" data-placeholder="Pilih ruang" data-url="{{ route('ajax.ruang') }}" name="ruang" required>
-                  @if ($ruang)
-                    <option selected value="{{ $ruang->id }}">{{ $ruang->nama }}</option>
-                  @endif
-                </select>
-              </div>
-            @endif
             <div class="col-sm-4">
               <div class="input-group" id="range">
                 <div class="input-group-append">

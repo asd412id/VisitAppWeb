@@ -15,7 +15,7 @@
       <div class="widget-body">
         <div class="d-flex justify-content-between align-items-center">
           <div class="state">
-            <h6>Tamu Hari Ini</h6>
+            <h6>Hari Ini</h6>
             <h2>{{ $guestDay }}</h2>
           </div>
           <div class="icon">
@@ -30,7 +30,7 @@
       <div class="widget-body">
         <div class="d-flex justify-content-between align-items-center">
           <div class="state">
-            <h6>Tamu Pekan Ini</h6>
+            <h6>Pekan Ini</h6>
             <h2>{{ $guestWeek }}</h2>
           </div>
           <div class="icon">
@@ -45,7 +45,7 @@
       <div class="widget-body">
         <div class="d-flex justify-content-between align-items-center">
           <div class="state">
-            <h6>Tamu Bulan Ini</h6>
+            <h6>Bulan Ini</h6>
             <h2>{{ $guestMonth }}</h2>
           </div>
           <div class="icon">
@@ -60,7 +60,7 @@
       <div class="widget-body">
         <div class="d-flex justify-content-between align-items-center">
           <div class="state">
-            <h6>Total Tamu</h6>
+            <h6>Total Pengunjung</h6>
             <h2>{{ $guestAll }}</h2>
           </div>
           <div class="icon">

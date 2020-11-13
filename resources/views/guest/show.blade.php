@@ -5,7 +5,7 @@
       @include('guest.layouts.table')
     @else
       <div class="alert alert-info">
-        <h5 class="m0 p0">Data tamu tidak tersedia!</h5>
+        <h5 class="m0 p0">Data pengunjung tidak tersedia!</h5>
       </div>
     @endif
   </div>
