@@ -19,7 +19,10 @@ class RuangController extends Controller
       if (auth()->user()->isAdmin) {
         $data = Ruang::orderBy('nama','asc');
       }else {
-        $data = auth()->user()->ruang()->orderBy('nama','asc');
+        $data = Ruang::whereHas('user',function($q){
+          $q->where('id',auth()->user()->id);
+        })
+        ->orderBy('nama','asc');
       }
       return DataTables::of($data)
       ->addColumn('status_text',function($row){
