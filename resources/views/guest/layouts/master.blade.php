@@ -70,6 +70,10 @@
 @section('footer')
 <script src="{{ url('assets/vendor/jquery.datetimepicker/jquery.datetimepicker.full.min.js') }}" charset="utf-8"></script>
 <script type="text/javascript">
+  function formatDate(date){
+    var parts = date.split("/");
+    return new Date(parts[0], parts[1] - 1, parts[2]);
+  }
   $(function(){
     $('#start_date').datetimepicker({
       format:'Y/m/d',
