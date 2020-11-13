@@ -66,7 +66,7 @@ class VisitController extends BaseController
   {
 
     $data = [
-      'title' => 'Form Kunjungan'.(@$this->configs?' - '.$this->configs->nama_instansi:''),
+      'title' => 'Form Kunjungan'.(@$this->configs->nama_instansi??' - '),
       'configs' => $this->configs,
       'ruang' => Ruang::whereHas('user')->orderBy('nama','asc')->get()
     ];
@@ -180,7 +180,7 @@ class VisitController extends BaseController
     }
 
     $data = [
-      'title' => 'Status Kunjungan'.(@$this->configs?' - '.$this->configs->nama_instansi:''),
+      'title' => 'Status Kunjungan'.(@$this->configs->nama_instansi??' - '),
       'configs' => $this->configs,
       'data' => $guest
     ];
