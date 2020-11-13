@@ -1,9 +1,7 @@
 @php
   $configs = \App\Models\Configs::getAll();
-  if (@$configs->logo2) {
-    $logo = asset('uploaded/'.@$configs->logo2);
-  }elseif (@$configs->logo1) {
-    $logo = asset('uploaded/'.@$configs->logo1);
+  if (@$configs->logo) {
+    $logo = asset('uploaded/'.@$configs->logo);
   }else{
     $logo = asset('assets/img/gbook.png');
   }
