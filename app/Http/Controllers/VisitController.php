@@ -34,7 +34,7 @@ class VisitController extends BaseController
   {
 
     $data = [
-      'title' => 'Selamat Datang'.(@$this->configs?' - '.$this->configs->nama_instansi:''),
+      'title' => 'Selamat Datang'.(@$this->configs->nama_instansi??' - '),
       'configs' => $this->configs
     ];
 
