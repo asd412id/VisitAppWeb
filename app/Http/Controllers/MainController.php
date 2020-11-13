@@ -151,7 +151,7 @@ class MainController extends BaseController
   {
     $data = [
       'config'=>Configs::getAll(),
-      'title' => 'Masuk Halaman Admin  - '.(@Configs::getAll()->nama_ruang??'UPTD SMP NEGERI 39 SINJAI')
+      'title' => 'Masuk Halaman Admin  - '.(@Configs::getAll()->nama_instansi??'UPTD SMP NEGERI 39 SINJAI')
     ];
 
     return view('login',$data);
@@ -270,7 +270,7 @@ class MainController extends BaseController
     $uuid = str_replace('=',$key,$generate);
 
     $data = [
-      'title' => 'Kode QR Buku Pengunjung - '.@$configs->nama_ruang??'UPTD SMPN 39 SINJAI',
+      'title' => 'Kode QR Buku Pengunjung - '.@$configs->nama_instansi??'UPTD SMPN 39 SINJAI',
       'uuid'=>$uuid,
       'configs'=>$configs,
     ];

@@ -31,7 +31,7 @@ class MobileApiController extends Controller
     }else{
       $dataruang = $ruang;
       $configs = $ruang->configs_all;
-      $dataruang->nama = @$configs->nama_ruang??$ruang->nama;
+      $dataruang->nama = @$configs->nama_instansi??$ruang->nama;
       if ($configs && @$configs->start_clock && @$configs->end_clock) {
         $start = Carbon::createFromFormat('H:i',$configs->start_clock);
         $end = Carbon::createFromFormat('H:i',$configs->end_clock);
@@ -71,7 +71,7 @@ class MobileApiController extends Controller
     }else {
       $guest = json_decode($r->header('user-data'));
       $configs = $ruang->configs_all;
-      $ruang->nama = @$configs->nama_ruang??$ruang->nama;
+      $ruang->nama = @$configs->nama_instansi??$ruang->nama;
 
       $insert = new Guest;
       $insert->uuid = Str::uuid();
@@ -123,7 +123,7 @@ class MobileApiController extends Controller
       $guest->kesan = $r->header('kesan');
       $ruang = $guest->getruang;
       $configs = $ruang->configs_all;
-      $ruang->nama = @$configs->nama_ruang??$ruang->nama;
+      $ruang->nama = @$configs->nama_instansi??$ruang->nama;
 
       if ($guest->save()) {
         $code = $this->acc_code;

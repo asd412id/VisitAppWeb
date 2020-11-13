@@ -78,7 +78,7 @@
       </div>
       <footer class="footer">
         <div class="w-100 clearfix">
-          <span class="text-center text-sm-left d-md-inline-block">Copyright © {{ date("Y").' '.(@$configs->nama_ruang??'UPTD SMP Negeri 39 Sinjai') }}.</span>
+          <span class="text-center text-sm-left d-md-inline-block">Copyright © {{ date("Y").' '.(@$configs->nama_instansi??'UPTD SMP Negeri 39 Sinjai') }}.</span>
           <span class="float-none float-sm-right mt-1 mt-sm-0 text-center">Dikembangkan oleh <a href="https://www.facebook.com/aezdar" class="text-dark font-weight-bold">asd412id</a></span>
         </div>
       </footer>

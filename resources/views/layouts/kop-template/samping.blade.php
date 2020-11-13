@@ -7,7 +7,7 @@
     @endif
     <div style="display: inline-block;word-break: break-all">
       <h4 class="font-weight-bold" style="text-align: center;margin: 0">{!! nl2br(@$configs->kop??"PEMERINTAH KABUPATEN SINJAI\nDINAS PENDIDIKAN") !!}</h4>
-      <h4 class="font-weight-bold" style="text-align: center;margin: 0;text-transform: uppercase !important">{{ @$configs->nama_ruang??'UPTD SMP NEGERI 39 SINJAI' }}</h4>
+      <h4 class="font-weight-bold" style="text-align: center;margin: 0;text-transform: uppercase !important">{{ @$configs->nama_instansi??'UPTD SMP NEGERI 39 SINJAI' }}</h4>
       <p style="text-align: center;margin-bottom: 0;margin-top: 5px;font-size: 0.9em"><em>{!! nl2br(@$configs->alamat) !!}</em></p>
     </div>
     @if (@$configs->logo2)
