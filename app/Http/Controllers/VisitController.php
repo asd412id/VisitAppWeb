@@ -153,7 +153,7 @@ class VisitController extends BaseController
             'id' => $n->type_id,
             'type' => 'ruang',
             'message' => $n->message,
-            'url' => route('notif.index'),
+            'url' => route('notif.show',['uuid'=>$g->uuid]),
             'icon' => $logo,
           ]
         ];
