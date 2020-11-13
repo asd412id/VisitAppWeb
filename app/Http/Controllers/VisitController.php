@@ -68,7 +68,7 @@ class VisitController extends BaseController
     $data = [
       'title' => 'Form Kunjungan'.(@$this->configs->nama_instansi??' - '),
       'configs' => $this->configs,
-      'ruang' => Ruang::whereHas('user')->orderBy('nama','asc')->get()
+      'ruang' => Ruang::whereHas('user')->where('status',true)->orderBy('nama','asc')->get()
     ];
 
     return view('guestpage.form',$data);
@@ -97,7 +97,7 @@ class VisitController extends BaseController
     ];
     Validator::make($r->all(),$roles,$messages)->validate();
 
-    $ruang = Ruang::find($r->ruang);
+    $ruang = Ruang::where('id',$r->ruang)->where('status',true)->first();
 
     if (!$ruang) {
       return redirect()->back()->withErrors(['Bidang/Ruang tidak tersedia!']);
