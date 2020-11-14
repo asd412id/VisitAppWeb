@@ -44,6 +44,9 @@
               @else
                 {{ $g->status?'Diterima':'Ditolak' }}
               @endif
+              <br>
+              <b>Keterangan:</b><br>
+              <em>{{ $g->keterangan }}</em>
             </td>
             <td>{{ $g->approved_by }}</td>
             @break
@@ -69,6 +72,9 @@
                 @else
                   {{ $g->status?'Diterima':'Ditolak' }}
                 @endif
+                <br>
+                <b>Keterangan:</b><br>
+                <em>{{ $g->keterangan }}</em>
               </td>
               <td>{{ $g->approved_by }}</td>
             </tr>
