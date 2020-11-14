@@ -55,7 +55,6 @@
         @if (count($d['data']))
           @foreach ($d['data'] as $key => $g)
             <tr>
-              <td class="text-center nowrap">{{ $g->cin->format('H:i').($g->cout?' - '.$g->cout->format('H:i'):null) }}</td>
               <td>
                 <strong>{{ $g->nama }}</strong>
               </td>
