@@ -42,7 +42,7 @@
               @if (is_null($g->status))
                 Belum Dikonfirmasi
               @else
-                {{ $g->status?'Diterima':'Ditolak' }}
+                <b style="text-decoration: underline">{{ $g->status?'Diterima':'Ditolak' }}</b>
               @endif
               <br>
               <b>Keterangan:</b><br>
@@ -70,7 +70,7 @@
                 @if (is_null($g->status))
                   Belum Dikonfirmasi
                 @else
-                  {{ $g->status?'Diterima':'Ditolak' }}
+                  <b style="text-decoration: underline">{{ $g->status?'Diterima':'Ditolak' }}</b>
                 @endif
                 <br>
                 <b>Keterangan:</b><br>
