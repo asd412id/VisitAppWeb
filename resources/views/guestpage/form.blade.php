@@ -12,7 +12,7 @@
     </div>
 
     <span class="contact100-form-title">
-      Form Kunjungan<br>
+      Registrasi Kunjungan<br>
       {{ @$configs->nama_instansi }}
     </span>
 

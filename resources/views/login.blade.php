@@ -45,7 +45,7 @@
             <div class="logo-centered">
               <a href="{{ route('login') }}"><img src="{{ $logo }}" alt="" style="width: 100%"></a>
             </div>
-            <h3 class="text-center">Buku Tamu Digital<br>{{ @$config->nama_instansi??'UPTD SMP NEGERI 39 SINJAI' }}</h3>
+            <h3 class="text-center">Registrasi Kunjungan<br>{{ @$config->nama_instansi??'UPTD SMP NEGERI 39 SINJAI' }}</h3>
             <p class="text-center">Masuk Halaman Administrator</p>
             @if ($errors->any())
               <div class="alert alert-danger">{{ $errors->all()[0] }}</div>
