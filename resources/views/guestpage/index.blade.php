@@ -45,7 +45,7 @@
         <p class="text-center m-2 font-weight-bold">ATAU</p>
         <button class="contact100-form-btn bg-success" onclick="location.href='{{ route('visit.form') }}'" type="button">
           <span>
-            Isi Form Kunjungan
+            Registrasi
             <i class="fa fa-long-arrow-right m-l-7" aria-hidden="true"></i>
           </span>
         </button>
