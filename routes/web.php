@@ -14,8 +14,8 @@ use Illuminate\Support\Facades\Route;
 */
 Route::get('/', 'VisitController@index')->name('visit.index');
 Route::post('/', 'VisitController@check')->name('visit.check');
-Route::get('/form-kunjungan', 'VisitController@formKunjungan')->name('visit.form');
-Route::post('/form-kunjungan', 'VisitController@store')->name('visit.store');
+Route::get('/registrasi', 'VisitController@formKunjungan')->name('visit.form');
+Route::post('/registrasi', 'VisitController@store')->name('visit.store');
 Route::get('/status/{uuid}', 'VisitController@status')->name('visit.status');
 Route::post('/guest-token', 'AjaxController@storeToken')->name('ajax.token.guest.store');
 
