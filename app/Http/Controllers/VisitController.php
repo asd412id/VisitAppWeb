@@ -121,14 +121,14 @@ class VisitController extends BaseController
       $guest->save();
 
       if (count($ruang->user)) {
-        foreach ($ruang->user as $key => $u) {
-          $notif = new Notification;
-          $notif->uuid = (string) Str::uuid();
-          $notif->type = 'ruang';
-          $notif->type_id = $ruang->id;
-          $notif->target = $guest->id;
-          $notif->message = $r->name.' ingin mengunjungi '.$ruang->nama.' pada tanggal '.$guest->cin->locale('id')->translatedFormat('j F Y');
-          if ($notif->save()) {
+        $notif = new Notification;
+        $notif->uuid = (string) Str::uuid();
+        $notif->type = 'ruang';
+        $notif->type_id = $ruang->id;
+        $notif->target = $guest->id;
+        $notif->message = $r->name.' ingin mengunjungi '.$ruang->nama.' pada tanggal '.$guest->cin->locale('id')->translatedFormat('j F Y');
+        if ($notif->save()) {
+          foreach ($ruang->user as $key => $u) {
             $this->sendNotification($u,$guest,$notif);
           }
         }
